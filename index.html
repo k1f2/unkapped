@@ -1,102 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>unkapped - life</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>unkapped - Brand House</title>
+   <link rel="icon" href="assets/favicon.png" type="image/png">
   <style>
-    html, body {
+    body {
       margin: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Outfit', sans-serif;
-      background-color: #00ff88; /* Bright green */
-    }
-
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    .overlay {
-      position: relative;
-      z-index: 1;
+      background: white;
       display: flex;
-      flex-direction: column;
-      height: 100%;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      color: white;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+       cursor: url(assets/cursor.svg) 10 5, auto;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 700;
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      max-height: 800px;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin: 0;
-      opacity: 0.8;
+    .sticker {
+      position: absolute;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .sticker:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-link {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      display: block;
+    }
+
+    .logo-link:hover img {
+      transform: scale(1.03);
+    }
+
+    .logo-link img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    /* Sticker Sizes and Positions (based on reference image) */
+    #life {
+      width: 100px;
+      top: 25%;
+      left: 20%;
+    }
+
+    #remix {
+      width: 95px;
+      top: 15%;
+      right: 18%;
+    }
+
+    #nodes {
+      width: 90px;
+      bottom: 22%;
+      left: 22%;
+    }
+
+    #creation {
+      width: 200px;
+      bottom: 10%;
+      right: 12%;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>unkapped.in</h1>
-    <p>Coming soon</p>
+  <div class="container">
+
+    <!-- Life Sticker -->
+    <a href="life.html">
+      <img id="life" class="sticker" src="assets/life.svg" alt="Life">
+    </a>
+
+    <!-- Remix Sticker -->
+    <a href="remix.html">
+      <img id="remix" class="sticker" src="assets/remix.svg" alt="Remix">
+    </a>
+
+    <!-- Nodes Sticker -->
+    <a href="nodes.html">
+      <img id="nodes" class="sticker" src="assets/nodes.svg" alt="Nodes">
+    </a>
+
+    <!-- Creation Sticker -->
+    <a href="creation.html">
+      <img id="creation" class="sticker" src="assets/creation.svg" alt="Creation">
+    </a>
+
+    <!-- Clickable Logo -->
+    <a href="about.html" class="logo-link" scale="2">
+      <img src="assets/logo.svg" alt="Unkapped Logo">
+    </a>
+
   </div>
-
-  <!-- Three.js Library -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
-  <script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    // Add lighting
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5, 5, 5).normalize();
-    scene.add(light);
-
-    // Create a cube (dice)
-    const geometry = new THREE.BoxGeometry();
-    const materials = [
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-      new THREE.MeshStandardMaterial({ color: '#ffffff' }),
-    ];
-
-    const cube = new THREE.Mesh(geometry, materials);
-    scene.add(cube);
-
-    camera.position.z = 3;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  </script>
 </body>
 </html>
